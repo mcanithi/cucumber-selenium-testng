@@ -14,22 +14,24 @@ public class GoogleHomePage {
 	
 	ScriptHelper helper;
 	protected static WebDriver driver;
+	//String searchString;
 	
 	public GoogleHomePage(ScriptHelper helper) {
 		this.helper=helper;
 	}
 	
-	@Given("User is on Google HomePage")
-	public void userOnGoolgeHomePage() {
-		String pageTitle = helper.getDriver().getTitle();
-		System.out.println("Google Home Page Title :"+pageTitle);
-		Assert.assertEquals(pageTitle, "Google");
+	@Given("^User is on (.*)$")
+	public void userOnGoolgeHomePage(String url) {
+		String pageUrl = helper.getDriver().getCurrentUrl();
+		System.out.println("Google Home Page Title :"+ pageUrl);
+		Assert.assertTrue(pageUrl.toLowerCase().contains(url.toLowerCase()));
 		
 	}
-	@When("search ducks")
-	public void search_ducks() throws InterruptedException {
+	@When("^search for (.*)$")
+	public void search_ducks(String searchString) {
 		WebElement element = helper.getDriver().findElement(UIMap_googleHomePage.txtSearchGoogle);
-		element.sendKeys("ducks");
+		element.sendKeys(searchString);
+		helper.setSearchString(searchString); 
 		element.submit();	
 		
 	}

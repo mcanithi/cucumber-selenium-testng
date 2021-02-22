@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class ScriptHelper {
 	
 	private final WebDriver driver;
+	private String searchString;
 
 	public ScriptHelper(){
 		System.setProperty("webdriver.gecko.driver", "/home/nit/Desktop/geckodriver");
@@ -15,6 +16,12 @@ public class ScriptHelper {
 	}
 	public WebDriver getDriver() {
 		return driver;
+	}
+	public String getSearchString() {
+		return searchString;
+	}
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 	
 
