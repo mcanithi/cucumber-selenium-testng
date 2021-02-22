@@ -19,7 +19,8 @@ public class GoogleSearchResultListPage  {
 	
 	private ScriptHelper helper;
 	protected static WebDriver driver;
-
+	//String searchString;
+	
 	public GoogleSearchResultListPage(ScriptHelper helper) {
 		this.helper = helper;
 	}
@@ -32,10 +33,11 @@ public class GoogleSearchResultListPage  {
 		for (WebElement element: elements) {
 			System.out.println(element.getText());
 			String txt = element.getText();
+			String searchString = helper.getSearchString();
 			
-			if (txt.toLowerCase().contains("duck")){
-				Assert.assertTrue(true,"Search Result contain Duck");
-				System.out.println("Search result contain Duck");
+			if (txt.toLowerCase().contains(searchString)){
+				Assert.assertTrue(true);
+				System.out.println("Search result contain "+ searchString);
 			}
 			else 
 				Assert.assertFalse(true, "Search Result not contain Duck");
